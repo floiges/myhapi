@@ -1,4 +1,5 @@
 const Joi = require("joi"); // 校验数据结构
+const { jwtHeaderDefine } = require('../utils/router-helper');
 const GROUP_NAME = 'orders';
 
 module.exports = [
@@ -22,9 +23,7 @@ module.exports = [
                     )
                 },
                 // 适用于 header 额外字段约束的 headers 验证
-                headers: Joi.object({
-                    authorization: Joi.string().required(),
-                }).unknown(),
+                ...jwtHeaderDefine
             }
         }
     },
